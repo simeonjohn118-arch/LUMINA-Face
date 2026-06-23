@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA FACE // DOSSIER & EDITORIALS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght=700;800&family=Space+Grotesk:wght=300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Avant-Garde Luxury Reset & Variables (Perfect Match) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        :root {
+            --bg-deep: #080808;       /* Matte Obsidian Black */
+            --bg-card: #121212;       /* Elevated Surface Black */
+            --text-pure: #FFFFFF;     /* High Contrast White */
+            --gold-raw: #E5A93C;      /* Burnished Liquid Gold */
+            --gold-dim: #C59232;      /* Deep Luxury Shadow Gold */
+            --border-raw: rgba(229, 169, 60, 0.2); /* Subtle Gold Wireframe */
+            --transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-pure);
+            overflow-x: hidden;
+        }
+
+        /* Success Overlay - Modernized Noir Style */
+        .success-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            backdrop-filter: blur(15px);
+            padding: 20px;
+        }
+
+        .success-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .success-content {
+            border: 1px solid var(--gold-raw);
+            background: var(--bg-card);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        .success-icon {
+            font-size: 3rem;
+            color: var(--gold-raw);
+            margin-bottom: 20px;
+        }
+
+        .success-content h2 {
+            font-family: 'Syne', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 15px;
+        }
+
+        .success-content p {
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Fixed Frame Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: transparent;
+            border-bottom: 1px solid var(--border-raw);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(8, 8, 8, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 5px 0;
+        }
+        
+        .nav-grid {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            padding: 20px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .brand-logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            text-decoration: none;
+            color: var(--text-pure);
+        }
+
+        .brand-logo span { color: var(--gold-raw); }
+        
+        .menu-links {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            gap: 30px;
+            border-left: 1px solid var(--border-raw);
+            border-right: 1px solid var(--border-raw);
+            padding: 0 30px;
+            margin: 0 40px;
+        }
+        
+        .menu-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: color 0.3s ease;
+        }
+
+        .menu-links a:hover { color: var(--gold-raw); }
+
+        /* Asymmetric Buttons */
+        .raw-btn {
+            padding: 12px 28px;
+            border: 1px solid var(--gold-raw);
+            background: transparent;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--gold-raw);
+            display: inline-block;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .raw-btn:hover {
+            background: var(--gold-raw);
+            color: var(--bg-deep);
+            box-shadow: 0 0 25px rgba(229, 169, 60, 0.3);
+        }
+
+        .raw-btn-filled {
+            background: var(--gold-raw);
+            color: var(--bg-deep);
+            text-align: center;
+        }
+
+        .raw-btn-filled:hover {
+            background: transparent;
+            color: var(--gold-raw);
+        }
+
+        /* Hero Sub-Header Variant */
+        .page-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), var(--bg-deep)), url('https://images.unsplash.com/photo-1550246140-5119ae4790b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px 40px 60px 60px;
+            border-bottom: 1px solid var(--border-raw);
+        }
+
+        .page-hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 0.95;
+            color: var(--text-pure);
+        }
+
+        .page-hero h1 span { color: var(--gold-raw); }
+
+        .page-hero p {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 600px;
+        }
+        
+        /* Modernized Content Sections */
+        .index-section {
+            padding: clamp(60px, 10vw, 120px) clamp(20px, 5vw, 60px);
+            border-bottom: 1px solid var(--border-raw);
+        }
+
+        .index-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: clamp(40px, 7vw, 80px);
+        }
+
+        .index-title span { color: var(--gold-raw); }
+
+        /* Editorial Editorial Grid Updates */
+        .editorial-matrix {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .editorial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-raw);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .editorial-card:hover {
+            border-color: var(--gold-raw);
+            transform: translateY(-5px);
+        }
+
+        .card-img-wrap {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-raw);
+        }
+
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            filter: grayscale(100%);
+        }
+
+        .editorial-card:hover .card-img-wrap img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-body h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            color: var(--gold-raw);
+            margin-bottom: 10px;
+        }
+
+        .card-body p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.5;
+        }
+
+        /* High-Voltage Model Grid System */
+        .model-showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .model-cell {
+            border: 1px solid var(--border-raw);
+            background: var(--bg-card);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .model-cell:hover {
+            border-color: var(--gold-raw);
+        }
+
+        .model-photo-box {
+            width: 100%;
+            height: 550px;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+
+        .model-cell:hover .model-photo-box {
+            filter: grayscale(0%);
+        }
+
+        .model-meta-bar {
+            padding: 20px;
+            background: #000000;
+            border-top: 1px solid var(--border-raw);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .model-meta-bar span {
+            font-family: 'Syne', sans-serif;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .model-meta-bar i {
+            color: var(--gold-raw);
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .model-cell:hover .model-meta-bar i {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        /* Fully Embedded Registration Pass Form Hub */
+        .registration-hub {
+            padding: clamp(60px, 10vw, 140px) clamp(20px, 5vw, 60px);
+            background: var(--bg-deep);
+            border-top: 1px solid var(--border-raw);
+        }
+
+        .ticket-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            border: 1px solid var(--gold-raw);
+            background: var(--bg-card);
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+        }
+
+        .ticket-side-info {
+            background: #000000;
+            color: white;
+            padding: clamp(30px, 5vw, 60px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 40px;
+            border-right: 1px solid var(--border-raw);
+        }
+
+        .ticket-side-info h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            text-transform: uppercase;
+            line-height: 1;
+            color: var(--gold-raw);
+        }
+
+        .criteria-stack {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .criteria-stack li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .criteria-stack li span {
+            color: var(--gold-raw);
+            font-weight: 600;
+        }
+
+        .ticket-main-form {
+            padding: clamp(30px, 5vw, 60px);
+        }
+
+        .ticket-main-form h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+            color: var(--text-pure);
+        }
+
+        /* High Fashion Form Inputs */
+        .noir-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .noir-form-row input, .noir-input-group input {
+            width: 100%;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border-raw);
+            color: white;
+            padding: 15px;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .noir-form-row input:focus, .noir-input-group input:focus {
+            outline: none;
+            border-color: var(--gold-raw);
+            background: rgba(229,169,60,0.05);
+        }
+
+        .noir-input-group {
+            margin-bottom: 25px;
+        }
+
+        .noir-input-group label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold-raw);
+            margin-bottom: 10px;
+        }
+
+        .metrics-quad {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .metric-cell-input input {
+            width: 100%;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border-raw);
+            color: white;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .metric-cell-input label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        /* Interactive Premium Dossier Modal */
+        .editorial-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 4000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+        }
+
+        .editorial-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            border: 1px solid var(--gold-raw);
+            background: var(--bg-card);
+            width: 100%;
+            max-width: 1000px;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+        }
+
+        .modal-dismiss-trigger {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            color: var(--gold-raw);
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition);
+        }
+
+        .modal-dismiss-trigger:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-hero-frame {
+            height: 60vh;
+            background-size: cover;
+            background-position: center;
+            border-right: 1px solid var(--border-raw);
+        }
+
+        .modal-dossier-text {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-dossier-text h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            color: var(--gold-raw);
+            margin-bottom: 20px;
+        }
+
+        .modal-dossier-text p {
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .modal-dossier-text p strong {
+            color: var(--gold-raw);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .modal-bio-blurb {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-raw);
+            color: rgba(255,255,255,0.6);
+            line-height: 1.6;
+        }
+
+        /* Deep Luxury Noir Footer */
+        footer {
+            background: #000000;
+            color: white;
+            padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 60px) 40px;
+            border-top: 1px solid var(--border-raw);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: clamp(40px, 6vw, 80px);
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .footer-brand h3 span { color: var(--gold-raw); }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.5);
+            max-width: 420px;
+            line-height: 1.7;
+        }
+
+        .footer-nav h4, .footer-contact h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            color: var(--gold-raw);
+        }
+
+        .footer-nav ul { list-style: none; }
+        .footer-nav li { margin-bottom: 12px; }
+        .footer-nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+        .footer-nav a:hover { color: var(--gold-raw); }
+
+        .footer-contact p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+        }
+
+        .footer-newsletter-box {
+            margin-top: 20px;
+        }
+
+        .noir-inline-newsletter {
+            display: flex;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .noir-inline-newsletter input {
+            background: #111;
+            border: 1px solid var(--border-raw);
+            border-right: none;
+            color: white;
+            padding: 10px 15px;
+            flex-grow: 1;
+        }
+
+        .noir-inline-newsletter button {
+            background: var(--gold-raw);
+            border: none;
+            color: #000;
+            padding: 0 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+            flex-wrap: wrap;
+        }
+
+        /* Fully Fluid Responsive Architecture Overrides */
+        @media (max-width: 1024px) {
+            .editorial-matrix { grid-template-columns: repeat(2, 1fr); }
+            .model-showcase-grid { grid-template-columns: 1fr; }
+            .ticket-wrapper { grid-template-columns: 1fr; }
+            .ticket-side-info { border-right: none; border-bottom: 1px solid var(--border-raw); }
+            .modal-container { grid-template-columns: 1fr; }
+            .modal-hero-frame { height: 40vh; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-grid { grid-template-columns: auto auto; justify-content: space-between; padding: 20px; }
+            .menu-links { display: none; }
+            .editorial-matrix { grid-template-columns: 1fr; }
+            .noir-form-row { grid-template-columns: 1fr; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="successOverlay" class="success-overlay">
+        <div class="success-content">
+            <div class="success-icon"><i class="fa-solid fa-square-poll-horizontal"></i></div>
+            <h2>METRICS TRANSMITTED</h2>
+            <p>Your dossier configuration file has bypassed local checks and loaded directly into our screening workspace pool.</p>
+            <button class="raw-btn" onclick="toggleSuccessModal(false)">Return to Grid</button>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="nav-grid">
+            <a href="index.html" class="brand-logo">LUMINA<span>.</span>F</a>
+            <ul class="menu-links">
+                <li><a href="#magazine">Editorials</a></li>
+                <li><a href="#gallery">Featured Faces</a></li>
+                <li><a href="#apply">Dossier Sheet</a></li>
+            </ul>
+            <div class="nav-cta-zone">
+                <a href="#apply" class="raw-btn">Submit File</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <h1>TALENT DEVIATION.<span>ROSTER FILES.</span></h1>
+        <p>Review current operational high-fashion visual narratives and update registration profiles inside the localized pipeline architecture.</p>
+    </section>
+
+    <section id="magazine" class="index-section">
+        <h2 class="index-title">LATEST <span>EDITORIALS</span></h2>
+        <div class="editorial-matrix">
+            <div class="editorial-card">
+                <div class="card-img-wrap">
+                   <img src="https://images.unsplash.com/photo-1550246140-5119ae4790b8?q=80&w=1000&auto=format&fit=crop" alt="Streetwear Editorial Layout">
+                </div>
+                <div class="card-body">
+                    <h3>Bold & Modern Streetwear</h3>
+                    <p>Your style is your loudest statement. Pushing asymmetrical balance boundaries.</p>
+                </div>
+            </div>
+            <div class="editorial-card">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=1000&auto=format&fit=crop" alt="Lifestyle Trend Frame">
+                </div>
+                <div class="card-body">
+                    <h3>Fashion & Lifestyle</h3>
+                    <p>You can't outlook the shine. Authentic composition structure.</p>
+                </div>
+            </div>
+            <div class="editorial-card">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1000&auto=format&fit=crop" alt="High Fashion Minimalism Capture">
+                </div>
+                <div class="card-body">
+                    <h3>Minimalism & Pose</h3>
+                    <p>The pure art of high-fashion industrial studio editorial capture.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="index-section">
+        <h2 class="index-title">FEATURED <span>TALENTS</span></h2>
+        <div class="model-showcase-grid">
+            
+            <div class="model-cell" onclick="openPortfolio('Sasha Blue', '175cm', 'Lagos Vector', 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1000')">
+                <div class="model-photo-box" style="background-image: url('https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1000');"></div>
+                <div class="model-meta-bar">
+                    <span>Sasha Blue</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+    
+            <div class="model-cell" onclick="openPortfolio('Jordan V.', '188cm', 'Abuja Vector', 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=1000')">
+                <div class="model-photo-box" style="background-image: url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=1000');"></div>
+                <div class="model-meta-bar">
+                    <span>Jordan V.</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+    
+        </div>
+    </section>
+
+    <section class="registration-hub" id="apply">
+        <div class="ticket-wrapper">
+            <div class="ticket-side-info">
+                <div>
+                    <h2>DOSSIER DATA</h2>
+                    <p style="margin-top: 15px; color: rgba(255,255,255,0.4); font-size: 0.8rem; letter-spacing: 2px;">METRICS SCREENING CODE</p>
+                    <ul class="criteria-stack">
+                        <li>Legal Bounds <span>Resident Status</span></li>
+                        <li>Target Window <span>16 - 28 Yrs</span></li>
+                        <li>Structural Matrix <span>173cm+ F / 183cm+ M</span></li>
+                        <li>Affiliation <span>Independent Solo</span></li>
+                    </ul>
+                </div>
+                <div style="font-size: 0.75rem; letter-spacing: 2px; color: var(--gold-raw); font-weight: 600;"></div>
+            </div>
+            
+            <div class="ticket-main-form">
+                <h3>INITIALIZE SUBSURFACE FEED</h3>
+                
+                <form action="https://formspree.io/f/xeebqzbe" method="POST" id="model-form">
+                    <div class="noir-form-row">
+                        <input type="text" name="first_name" placeholder="FIRST NAME" required>
+                        <input type="text" name="last_name" placeholder="LAST NAME" required>
+                    </div>
+                
+                    <div class="noir-form-row">
+                        <input type="email" name="email" placeholder="EMAIL ADDRESS" required>
+                        <input type="tel" name="phone" placeholder="PHONE COORDINATES" required>
+                    </div>
+                
+                    <div class="metrics-quad">
+                        <div class="metric-cell-input"><label>HEIGHT (CM)</label><input type="number" name="height" placeholder="175" required></div>
+                        <div class="metric-cell-input"><label>BUST</label><input type="number" name="bust" placeholder="86"></div>
+                        <div class="metric-cell-input"><label>WAIST</label><input type="number" name="waist" placeholder="60"></div>
+                        <div class="metric-cell-input"><label>HIPS</label><input type="number" name="hips" placeholder="89"></div>
+                    </div>
+                
+                    <div class="noir-input-group">
+                        <label>PORTFOLIO LINK (GOOGLE DRIVE // DROPBOX)</label>
+                        <input type="url" name="portfolio_link" placeholder="https://secure-storage.com/vectors/..." required>
+                    </div>
+                
+                    <button type="submit" class="raw-btn raw-btn-filled" style="width: 100%; padding: 18px;">Transmit Verification File</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div id="portfolioModal" class="editorial-modal">
+        <div class="modal-container">
+            <span class="modal-dismiss-trigger" onclick="closePortfolio()">&times;</span>
+            <div id="modalImg" class="modal-hero-frame"></div>
+            <div class="modal-dossier-text">
+                <h2 id="modalName">MODEL CODE</h2>
+                <p><strong>HEIGHT INDEX:</strong> <span id="modalHeight">--</span></p>
+                <p><strong>LOCATION VECTOR:</strong> <span id="modalLoc">--</span></p>
+                <div class="modal-bio-blurb">
+                    Representing the next evolution tier of raw editorial presence. Optimized for high-voltage architectural poses, avant-garde runway formations, and cross-border campaign distribution.
+                </div>
+                <button class="raw-btn raw-btn-filled" style="margin-top: 30px; width: 100%;">Initialize Casting Request</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>LUMINA <span>F.</span></h3>
+                <p>Constructing a disruptive, non-traditional casting system. We are not interested in replicating previous beauty standard patterns; we destroy them entirely.</p>
+            </div>
+            <div class="footer-nav">
+                <h4>INDEX ARCHIVE</h4>
+                <ul>
+                    <li><a href="index.html">Main Terminal</a></li>
+                    <li><a href="#magazine">Editorials</a></li>
+                    <li><a href="#gallery">Featured</a></li>
+                    <li><a href="#apply">Register</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>COORDINATES</h4>
+                <p>19 Micheal Opara Street, Wuse zone 5, Abuja.</p>
+                <p>luminaface26@gmail.com</p>
+                
+                <div class="footer-newsletter-box">
+                    <form action="https://formspree.io/f/xeebqzbe" method="POST" class="noir-inline-newsletter">
+                        <input type="email" name="subscriber_email" placeholder="SECURE FEED EMAIL" required>
+                        <button type="submit">JOIN</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LUMINA FACE // NOIR INFRASTRUCTURE CO.</p>
+            <p>DESIGN INTERFACE SYSTEM v4.2 // BLACK & GOLD ED.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth background header shifting
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 40) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Interactive Roster Display Controllers
+        const portfolioModalElement = document.getElementById('portfolioModal');
+        
+        function openPortfolio(name, height, location, imgUrl) {
+            document.getElementById('modalName').textContent = name;
+            document.getElementById('modalHeight').textContent = height;
+            document.getElementById('modalLoc').textContent = location;
+            document.getElementById('modalImg').style.backgroundImage = `url('${imgUrl}')`;
+            portfolioModalElement.classList.add('active');
+        }
+
+        function closePortfolio() {
+            portfolioModalElement.classList.remove('active');
+        }
+
+        // Overlay Success State Manager
+        function toggleSuccessModal(showState) {
+            const overlay = document.getElementById('successOverlay');
+            if(showState) overlay.classList.add('active');
+            else overlay.classList.remove('active');
+        }
+
+        // Intercept standard form to showcase overlay gracefully before submission logic redirection
+        document.getElementById('model-form').addEventListener('submit', function(e) {
+            // Note: If you want asynchronous formspree tracking without page redirection, 
+            // you'd call e.preventDefault() here and run a native fetch layout request instead.
+            toggleSuccessModal(true);
+        });
+
+        // Close Popups on Background Clicks
+        window.addEventListener('click', (event) => {
+            if (event.target === portfolioModalElement) closePortfolio();
+        });
+    </script>
+</body>
+</html>

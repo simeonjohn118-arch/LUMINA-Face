@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA FACE // ONYX NOIR 2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght=700;800&family=Space+Grotesk:wght=300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Avant-Garde Luxury Reset & Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        :root {
+            --bg-deep: #080808;       /* Matte Obsidian Black */
+            --bg-card: #121212;       /* Elevated Surface Black */
+            --text-pure: #FFFFFF;     /* High Contrast White */
+            --gold-raw: #E5A93C;      /* Burnished Liquid Gold */
+            --gold-dim: #C59232;      /* Deep Luxury Shadow Gold */
+            --border-raw: rgba(229, 169, 60, 0.2); /* Subtle Gold Wireframe */
+            --transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-pure);
+            overflow-x: hidden;
+        }
+
+        /* Irresistible Dark Room Entry Popup */
+        .editorial-popup {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            backdrop-filter: blur(15px);
+            padding: 20px;
+        }
+
+        .editorial-popup.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+            max-width: 1100px;
+            min-height: 60vh;
+            border: 1px solid var(--gold-raw);
+            background: var(--bg-card);
+            overflow: hidden;
+        }
+
+        .popup-left {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 30px;
+            position: relative;
+        }
+
+        .popup-right {
+            background: linear-gradient(rgba(0,0,0,0.2), var(--bg-deep)), url('https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
+            border-left: 1px solid var(--border-raw);
+        }
+
+        .popup-left h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 1.1;
+            text-transform: uppercase;
+            color: var(--gold-raw);
+            letter-spacing: -1px;
+        }
+
+        .popup-close-btn {
+            background: transparent;
+            border: 1px solid var(--gold-raw);
+            color: var(--gold-raw);
+            padding: 12px 24px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            align-self: flex-start;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .popup-close-btn:hover {
+            background: var(--gold-raw);
+            color: var(--bg-deep);
+        }
+        
+        /* Fixed Frame Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: transparent;
+            border-bottom: 1px solid var(--border-raw);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(8, 8, 8, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 5px 0;
+        }
+        
+        .nav-grid {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            padding: 20px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .brand-logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            text-decoration: none;
+            color: var(--text-pure);
+        }
+
+        .brand-logo span { color: var(--gold-raw); }
+        
+        .menu-links {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            gap: 30px;
+            border-left: 1px solid var(--border-raw);
+            border-right: 1px solid var(--border-raw);
+            padding: 0 30px;
+            margin: 0 40px;
+        }
+        
+        .menu-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: color 0.3s ease;
+        }
+
+        .menu-links a:hover { color: var(--gold-raw); }
+
+        .nav-cta-zone { text-align: right; }
+
+        /* Custom Asymmetric Buttons */
+        .raw-btn {
+            padding: 12px 28px;
+            border: 1px solid var(--gold-raw);
+            background: transparent;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--gold-raw);
+            display: inline-block;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .raw-btn:hover {
+            background: var(--gold-raw);
+            color: var(--bg-deep);
+            box-shadow: 0 0 25px rgba(229, 169, 60, 0.3);
+        }
+
+        .raw-btn-filled {
+            background: var(--gold-raw);
+            color: var(--bg-deep);
+        }
+
+        .raw-btn-filled:hover {
+            background: transparent;
+            color: var(--gold-raw);
+        }
+        
+        /* Deep Split Hero Layout */
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            min-height: 100vh;
+            padding-top: 80px;
+            border-bottom: 1px solid var(--border-raw);
+        }
+        
+        .hero-panel-text {
+            padding: 60px 40px 60px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid var(--border-raw);
+            background: linear-gradient(135deg, var(--bg-deep) 0%, #101010 100%);
+        }
+        
+        .hero-panel-text h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            line-height: 0.95;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 40px;
+            color: var(--text-pure);
+        }
+
+        .hero-panel-text h1 span {
+            color: var(--gold-raw);
+            display: block;
+        }
+        
+        .hero-panel-text p {
+            font-size: clamp(1rem, 1.5vw, 1.15rem);
+            line-height: 1.7;
+            max-width: 580px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 50px;
+        }
+        
+        .hero-panel-media {
+            background: linear-gradient(rgba(0,0,0,0.2), var(--bg-deep)), url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            position: relative;
+            min-height: 400px;
+        }
+
+        /* Hypnotic Gold Marquee Ticker */
+        .hero-marquee {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--gold-raw);
+            color: var(--bg-deep);
+            padding: 16px 0;
+            overflow: hidden;
+        }
+
+        .marquee-inner {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 22s linear infinite;
+            font-family: 'Syne', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+        
+        /* Luxury Tier Index Table (Prizes) */
+        .index-section {
+            padding: clamp(60px, 10vw, 140px) clamp(20px, 5vw, 60px);
+            background: var(--bg-deep);
+            border-bottom: 1px solid var(--border-raw);
+        }
+
+        .index-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: clamp(40px, 7vw, 80px);
+            color: var(--text-pure);
+        }
+
+        .index-title span { color: var(--gold-raw); }
+        
+        .index-table {
+            width: 100%;
+        }
+
+        .index-row {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 3.5fr;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-raw);
+            align-items: center;
+            gap: 20px;
+            transition: var(--transition);
+        }
+
+        .index-row:last-child {
+            border-bottom: 1px solid var(--border-raw);
+        }
+
+        .index-row:hover {
+            background: var(--bg-card);
+            padding-left: 30px;
+            border-top-color: var(--gold-raw);
+        }
+
+        .index-num {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gold-raw);
+            letter-spacing: 1px;
+        }
+
+        .index-tier {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            text-transform: uppercase;
+            color: var(--text-pure);
+        }
+
+        .index-row:hover .index-tier {
+            color: var(--gold-raw);
+        }
+
+        .index-details {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+        
+        /* Dark Industrial Counter Zone */
+        .industrial-counter {
+            padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 60px);
+            background: #000000;
+            border-bottom: 1px solid var(--border-raw);
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .counter-msg h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            text-transform: uppercase;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            color: var(--text-pure);
+        }
+
+        .counter-msg h2 span { color: var(--gold-raw); }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            border-left: 1px solid var(--border-raw);
+            padding-left: 40px;
+        }
+
+        .counter-box {
+            text-align: left;
+        }
+
+        .counter-val {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 4.5rem);
+            color: var(--gold-raw);
+            line-height: 1;
+            font-weight: 800;
+        }
+
+        .counter-lbl {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        /* Matrix Branding Cell Grid */
+        .brand-matrix {
+            padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 60px);
+            background: var(--bg-deep);
+            border-bottom: 1px solid var(--border-raw);
+        }
+
+        .matrix-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 20px;
+            margin-bottom: clamp(40px, 6vw, 80px);
+            flex-wrap: wrap;
+        }
+
+        .matrix-header h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid var(--border-raw);
+            border-left: 1px solid var(--border-raw);
+        }
+
+        .matrix-cell {
+            padding: 0; /* Removed absolute padding to let images touch corners if desired */
+            border-right: 1px solid var(--border-raw);
+            border-bottom: 1px solid var(--border-raw);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 250px; /* Elevated height for standard full box presentation */
+            background: var(--bg-card);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .matrix-cell:hover {
+            background: var(--gold-raw);
+            transform: scale(1.02);
+            z-index: 5;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .matrix-cell:hover .matrix-logo {
+            filter: brightness(0);
+        }
+
+        .matrix-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    filter: grayscale(100%) contrast(1.2); /* Makes them all uniform black & white photography style */
+    transition: var(--transition);
+    flex-grow: 1;
+}
+
+.matrix-cell:hover .matrix-logo {
+    filter: grayscale(0%) contrast(1); /* Brings back original colors on hover */
+}
+
+        .matrix-desc {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-pure);
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .matrix-cell:hover .matrix-desc {
+            color: var(--bg-deep);
+            background: transparent;
+            font-weight: 600;
+        }
+        
+        /* Pass Identity Form Hub */
+        .registration-hub {
+            padding: clamp(60px, 10vw, 140px) clamp(20px, 5vw, 60px);
+            background: var(--bg-deep);
+        }
+
+        .ticket-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            border: 1px solid var(--gold-raw);
+            background: var(--bg-card);
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+        }
+
+        .ticket-side-info {
+            background: #000000;
+            color: white;
+            padding: clamp(30px, 5vw, 60px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 40px;
+            border-right: 1px solid var(--border-raw);
+        }
+
+        .ticket-side-info h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            text-transform: uppercase;
+            line-height: 1;
+            color: var(--gold-raw);
+        }
+
+        .criteria-stack {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .criteria-stack li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .criteria-stack li span {
+            color: var(--gold-raw);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .ticket-main-form {
+            padding: clamp(30px, 5vw, 60px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .ticket-main-form h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .ticket-main-form p {
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+        
+        /* Dark Premium Editorial Footer */
+        footer {
+            background: #000000;
+            color: white;
+            padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 60px) 40px;
+            border-top: 1px solid var(--border-raw);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: clamp(40px, 6vw, 80px);
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .footer-brand h3 span { color: var(--gold-raw); }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.5);
+            max-width: 420px;
+            line-height: 1.7;
+        }
+
+        .footer-nav h4, .footer-contact h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            color: var(--gold-raw);
+        }
+
+        .footer-nav ul { list-style: none; }
+        .footer-nav li { margin-bottom: 12px; }
+        .footer-nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+        .footer-nav a:hover { color: var(--gold-raw); }
+
+        .footer-contact p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+            flex-wrap: wrap;
+        }
+
+        /* Fully Fluid Responsive Architecture Overrides */
+        @media (max-width: 1024px) {
+            .popup-split { grid-template-columns: 1fr; min-height: auto; max-height: 90vh; overflow-y: auto; }
+            .popup-right { display: none; }
+            .popup-left { padding: 30px; }
+            
+            .hero-split { grid-template-columns: 1fr; }
+            .hero-panel-text { border-right: none; border-bottom: 1px solid var(--border-raw); padding: 60px 20px; }
+            .hero-panel-media { min-height: 60vh; }
+            
+            .index-row { grid-template-columns: auto 1fr; }
+            .index-details { grid-column: 1 / -1; }
+            
+            .industrial-counter { grid-template-columns: 1fr; }
+            .counter-grid { border-left: none; padding-left: 0; }
+            
+            .matrix-grid { grid-template-columns: repeat(2, 1fr); }
+            .ticket-wrapper { grid-template-columns: 1fr; }
+            .ticket-side-info { border-right: none; border-bottom: 1px solid var(--border-raw); }
+            
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-grid { grid-template-columns: auto auto; justify-content: space-between; padding: 20px; }
+            .menu-links { display: none; }
+            
+            .counter-grid { gap: 10px; }
+            .counter-val { font-size: 2rem; }
+            .counter-lbl { font-size: 0.65rem; letter-spacing: 0.5px; }
+        }
+
+        @media (max-width: 480px) {
+            .matrix-grid { grid-template-columns: 1fr; }
+            .index-row { grid-template-columns: 1fr; gap: 5px; }
+            .footer-bottom { flex-direction: column; text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="entryPopup" class="editorial-popup">
+        <div class="popup-split">
+            <div class="popup-left">
+                <div>
+                    <h2>LUMINA FACE // 2026</h2>
+                    <p style="margin-top: 25px; color: rgba(255,255,255,0.6); max-width: 380px; line-height: 1.6;">You have reached the core verification network interface. The search matrix is live. Secure your profile positioning immediately.</p>
+                </div>
+                <button class="popup-close-btn" id="closePopup">Unlock Experience</button>
+            </div>
+            <div class="popup-right"></div>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="nav-grid">
+            <a href="#" class="brand-logo">LUMINA<span>.</span>F</a>
+            <ul class="menu-links">
+                <li><a href="#prizes">Prize Matrix</a></li>
+                <li><a href="#countdown">Timeline</a></li>
+                <li><a href="#sponsors">Allies</a></li>
+                <li><a href="#apply">Dossier File</a></li>
+            </ul>
+            <div class="nav-cta-zone">
+                <a href="#apply" class="raw-btn">Apply Now</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-split" id="home">
+        <div class="hero-panel-text">
+            <h1>UNCOMMON CORE.<span>RAW POWER.</span></h1>
+            <p>We are throwing out the standard rules of predictable model placement networks. LUMINA Face tracks distinct, asymmetric, high-voltage editorial faces equipped to challenge classic industry definitions across regional and global domains.</p>
+            <div>
+                <a href="#apply" class="raw-btn raw-btn-filled">Secure Entry Profile</a>
+            </div>
+        </div>
+        <div class="hero-panel-media">
+            <div class="hero-marquee">
+                <div class="marquee-inner">
+                    LUMINA FACE 2026 // NO PREDICTABLE PATTERNS // SEEKING UNCONVENTIONAL PROFILES // 
+                    LUMINA FACE 2026 // NO PREDICTABLE PATTERNS // SEEKING UNCONVENTIONAL PROFILES // 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="index-section" id="prizes">
+        <h2 class="index-title">Valuation <span>Tiers</span></h2>
+        <div class="index-table">
+            <div class="index-row">
+                <div class="index-num">VAL // 01</div>
+                <div class="index-tier">1st Place</div>
+                <div class="index-details"><strong>₦300,000 Cash Execution asset pool.</strong> Elite agency portfolio pairing targeting immediate representation across Milan/London vectors. Exclusive solo layout profile feature.</div>
+            </div>
+            <div class="index-row">
+                <div class="index-num">VAL // 02</div>
+                <div class="index-tier">2nd Place</div>
+                <div class="index-details"><strong>₦200,000 Direct liquidity asset payout.</strong> National retail design identity placement contract with premium commercial digital network mapping.</div>
+            </div>
+            <div class="index-row">
+                <div class="index-num">VAL // 03</div>
+                <div class="index-tier">3rd Place</div>
+                <div class="index-details"><strong>₦100,000 Capital portfolio backing.</strong> Specialized high-performance physical runway masterclass track guided directly by continental fashion experts.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="industrial-counter" id="countdown">
+        <div class="counter-msg">
+            <h2>THE SELECTION ENGINE IS <span>CLOSING.</span></h2>
+        </div>
+        <div class="counter-grid">
+            <div class="counter-box">
+                <div class="counter-val" id="days">00</div>
+                <div class="counter-lbl">Days Rem</div>
+            </div>
+            <div class="counter-box">
+                <div class="counter-val" id="hours">00</div>
+                <div class="counter-lbl">Hrs Rem</div>
+            </div>
+            <div class="counter-box">
+                <div class="counter-val" id="minutes">00</div>
+                <div class="counter-lbl">Min Rem</div>
+            </div>
+            <div class="counter-box">
+                <div class="counter-val" id="seconds">00</div>
+                <div class="counter-lbl">Sec Rem</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="brand-matrix" id="sponsors">
+        <div class="matrix-header">
+            <h2>CO-CONSPIRATORS</h2>
+            <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--gold-raw);">Operational Alliances 2026</p>
+        </div>
+        <div class="matrix-grid">
+            <div class="matrix-cell">
+                <img src="image/Glamora.png" alt="Glamora" class="matrix-logo">
+                <div class="matrix-desc">Culture Core Infrastructure</div>
+            </div>
+            <div class="matrix-cell">
+                <img src="image/Eloria.png" alt="Eloria Fashion" class="matrix-logo">
+                <div class="matrix-desc">High-Voltage Captivation</div>
+            </div>
+            <div class="matrix-cell">
+                <img src="image/Velvet.png" alt="Velvet Glow" class="matrix-logo">
+                <div class="matrix-desc">Taste Velocity Matrix</div>
+            </div>
+            <div class="matrix-cell">
+                <img src="image/Natural.png" alt="Nature Bliss" class="matrix-logo">
+                <div class="matrix-desc">Absolute Identity Presence</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="registration-hub" id="apply">
+        <div class="ticket-wrapper">
+            <div class="ticket-side-info">
+                <div>
+                    <h2>ENTRY PASS</h2>
+                    <p style="margin-top: 15px; color: rgba(255,255,255,0.4); font-size: 0.8rem; letter-spacing: 2px;">METRICS SCREENING CODE</p>
+                    <ul class="criteria-stack">
+                        <li>Legal Bounds <span>Resident Status</span></li>
+                        <li>Target Window <span>16 - 28 Yrs</span></li>
+                        <li>Structural Matrix <span>173cm+ F / 183cm+ M</span></li>
+                        <li>Affiliation <span>Independent Solo</span></li>
+                    </ul>
+                </div>
+                <div style="font-size: 0.75rem; letter-spacing: 2px; color: var(--gold-raw); font-weight: 600;">SYS_REF // LMN_2026_FC</div>
+            </div>
+            <div class="ticket-main-form">
+                <h3>INITIALIZE INDUCTION DOSSIER</h3>
+                <p>Opening your path submission feeds your digital metrics and snapshot values directly to our selection panel workspace.</p>
+                <a href="modeling web/signup.html" class="raw-btn raw-btn-filled" style="padding: 18px 45px; text-align: center; width: 100%;">Register</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>LUMINA <span>F.</span></h3>
+                <p>Constructing a disruptive, non-traditional casting system. We are not interested in replicating previous beauty standard patterns; we destroy them entirely.</p>
+            </div>
+            <div class="footer-nav">
+                <h4>INDEX ARCHIVE</h4>
+                <ul>
+                    <li><a href="#home">Zenith</a></li>
+                    <li><a href="#prizes">Asset Tiers</a></li>
+                    <li><a href="#sponsors">Allies</a></li>
+                    <li><a href="#apply">Register</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>COORDINATES</h4>
+                <p>19 Micheal Opara Street, Wuse zone 5, Abuja.</p>
+                <p></p>
+                <p>luminaface26@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LUMINA FACE // NOIR INFRASTRUCTURE CO.</p>
+            <p>DESIGN INTERFACE SYSTEM v4.2 // BLACK & GOLD ED.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth background header shifting
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 40) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Exact Structural Countdown Engine
+        function runCountdown() {
+            const targetMoment = new Date('July 02, 2026 23:59:59').getTime();
+            const currentMoment = new Date().getTime();
+            const dynamicDelta = targetMoment - currentMoment;
+            
+            if (dynamicDelta < 0) {
+                document.getElementById('countdown').innerHTML = "<h2 style='grid-column: 1/-1; text-align: center; font-family: Syne; color: var(--gold-raw);'>PIPELINE CHANNELS CLOSED // APPLICATION CAP HIT</h2>";
+                return;
+            }
+            
+            const d = Math.floor(dynamicDelta / (1000 * 60 * 60 * 24));
+            const h = Math.floor((dynamicDelta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((dynamicDelta % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((dynamicDelta % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = d.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = h.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = m.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = s.toString().padStart(2, '0');
+        }
+        
+        setInterval(runCountdown, 1000);
+        runCountdown();
+
+        // Control Interactive Popup Display States
+        document.addEventListener('DOMContentLoaded', () => {
+            const containerBox = document.getElementById('entryPopup');
+            const dismissButton = document.getElementById('closePopup');
+
+            containerBox.classList.add('active');
+            dismissButton.addEventListener('click', () => containerBox.classList.remove('active'));
+            
+            window.addEventListener('click', (event) => {
+                if (event.target === containerBox) containerBox.classList.remove('active');
+            });
+        });
+
+        // Core UI Smooth Scroll Mapping
+        document.querySelectorAll('a[href^="#"]').forEach(navigationTrigger => {
+            navigationTrigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                const dynamicSelector = this.getAttribute('href');
+                if (dynamicSelector === '#') return;
+                
+                const concreteNode = document.querySelector(dynamicSelector);
+                if (concreteNode) {
+                    window.scrollTo({
+                        top: concreteNode.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
