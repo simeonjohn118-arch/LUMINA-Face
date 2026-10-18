@@ -19,9 +19,9 @@
             --bg-deep: #080808;       /* Matte Obsidian Black */
             --bg-card: #121212;       /* Elevated Surface Black */
             --text-pure: #FFFFFF;     /* High Contrast White */
-            --gold-raw: #E5A93C;      /* Burnished Liquid Gold */
-            --gold-dim: #C59232;      /* Deep Luxury Shadow Gold */
-            --border-raw: rgba(229, 169, 60, 0.2); /* Subtle Gold Wireframe */
+            --accent-red: #FF1738;      /* LUMINA neon red accent */
+            --accent-red-dark: #C8102E;      /* Deep LUMINA red */
+            --border-raw: rgba(255, 23, 56, 0.24); /* Subtle red wireframe */
             --transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
         
@@ -59,7 +59,7 @@
             width: 100%;
             max-width: 1100px;
             min-height: 60vh;
-            border: 1px solid var(--gold-raw);
+            border: 1px solid var(--accent-red);
             background: var(--bg-card);
             overflow: hidden;
         }
@@ -83,14 +83,14 @@
             font-size: clamp(2rem, 4vw, 3.5rem);
             line-height: 1.1;
             text-transform: uppercase;
-            color: var(--gold-raw);
+            color: var(--accent-red);
             letter-spacing: -1px;
         }
 
         .popup-close-btn {
             background: transparent;
-            border: 1px solid var(--gold-raw);
-            color: var(--gold-raw);
+            border: 1px solid var(--accent-red);
+            color: var(--accent-red);
             padding: 12px 24px;
             text-transform: uppercase;
             font-size: 0.8rem;
@@ -102,7 +102,7 @@
         }
 
         .popup-close-btn:hover {
-            background: var(--gold-raw);
+            background: var(--accent-red);
             color: var(--bg-deep);
         }
         
@@ -143,7 +143,7 @@
             color: var(--text-pure);
         }
 
-        .brand-logo span { color: var(--gold-raw); }
+        .brand-logo span { color: var(--accent-red); }
         
         .menu-links {
             display: flex;
@@ -166,14 +166,14 @@
             transition: color 0.3s ease;
         }
 
-        .menu-links a:hover { color: var(--gold-raw); }
+        .menu-links a:hover { color: var(--accent-red); }
 
         .nav-cta-zone { text-align: right; }
 
         /* Custom Asymmetric Buttons */
         .raw-btn {
             padding: 12px 28px;
-            border: 1px solid var(--gold-raw);
+            border: 1px solid var(--accent-red);
             background: transparent;
             text-transform: uppercase;
             font-size: 0.8rem;
@@ -181,26 +181,26 @@
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
-            color: var(--gold-raw);
+            color: var(--accent-red);
             display: inline-block;
             transition: var(--transition);
             white-space: nowrap;
         }
 
         .raw-btn:hover {
-            background: var(--gold-raw);
+            background: var(--accent-red);
             color: var(--bg-deep);
             box-shadow: 0 0 25px rgba(229, 169, 60, 0.3);
         }
 
         .raw-btn-filled {
-            background: var(--gold-raw);
+            background: var(--accent-red);
             color: var(--bg-deep);
         }
 
         .raw-btn-filled:hover {
             background: transparent;
-            color: var(--gold-raw);
+            color: var(--accent-red);
         }
         
         /* Deep Split Hero Layout */
@@ -232,7 +232,7 @@
         }
 
         .hero-panel-text h1 span {
-            color: var(--gold-raw);
+            color: var(--accent-red);
             display: block;
         }
         
@@ -256,7 +256,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: var(--gold-raw);
+            background: var(--accent-red);
             color: var(--bg-deep);
             padding: 16px 0;
             overflow: hidden;
@@ -294,7 +294,7 @@
             color: var(--text-pure);
         }
 
-        .index-title span { color: var(--gold-raw); }
+        .index-title span { color: var(--accent-red); }
         
         .index-table {
             width: 100%;
@@ -317,13 +317,13 @@
         .index-row:hover {
             background: var(--bg-card);
             padding-left: 30px;
-            border-top-color: var(--gold-raw);
+            border-top-color: var(--accent-red);
         }
 
         .index-num {
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--gold-raw);
+            color: var(--accent-red);
             letter-spacing: 1px;
         }
 
@@ -335,7 +335,7 @@
         }
 
         .index-row:hover .index-tier {
-            color: var(--gold-raw);
+            color: var(--accent-red);
         }
 
         .index-details {
@@ -364,7 +364,7 @@
             color: var(--text-pure);
         }
 
-        .counter-msg h2 span { color: var(--gold-raw); }
+        .counter-msg h2 span { color: var(--accent-red); }
 
         .counter-grid {
             display: grid;
@@ -381,7 +381,7 @@
         .counter-val {
             font-family: 'Syne', sans-serif;
             font-size: clamp(2.2rem, 5vw, 4.5rem);
-            color: var(--gold-raw);
+            color: var(--accent-red);
             line-height: 1;
             font-weight: 800;
         }
@@ -439,7 +439,7 @@
         }
 
         .matrix-cell:hover {
-            background: var(--gold-raw);
+            background: var(--accent-red);
             transform: scale(1.02);
             z-index: 5;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
@@ -492,7 +492,7 @@
         .ticket-wrapper {
             max-width: 1100px;
             margin: 0 auto;
-            border: 1px solid var(--gold-raw);
+            border: 1px solid var(--accent-red);
             background: var(--bg-card);
             display: grid;
             grid-template-columns: 1fr 1.3fr;
@@ -514,7 +514,7 @@
             font-size: clamp(2.2rem, 4vw, 3rem);
             text-transform: uppercase;
             line-height: 1;
-            color: var(--gold-raw);
+            color: var(--accent-red);
         }
 
         .criteria-stack {
@@ -533,7 +533,7 @@
         }
 
         .criteria-stack li span {
-            color: var(--gold-raw);
+            color: var(--accent-red);
             font-weight: 600;
             text-align: right;
         }
@@ -585,7 +585,7 @@
             letter-spacing: -1px;
         }
 
-        .footer-brand h3 span { color: var(--gold-raw); }
+        .footer-brand h3 span { color: var(--accent-red); }
 
         .footer-brand p {
             color: rgba(255,255,255,0.5);
@@ -598,7 +598,7 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 25px;
-            color: var(--gold-raw);
+            color: var(--accent-red);
         }
 
         .footer-nav ul { list-style: none; }
@@ -611,7 +611,7 @@
             letter-spacing: 1px;
             transition: var(--transition);
         }
-        .footer-nav a:hover { color: var(--gold-raw); }
+        .footer-nav a:hover { color: var(--accent-red); }
 
         .footer-contact p {
             font-size: 0.9rem;
@@ -766,7 +766,7 @@
     <section class="brand-matrix" id="sponsors">
         <div class="matrix-header">
             <h2>PARTNERS</h2>
-            <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--gold-raw);">Operational Alliances 2026</p>
+            <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--accent-red);">Operational Alliances 2026</p>
         </div>
         <div class="matrix-grid">
             <div class="matrix-cell">
@@ -801,7 +801,7 @@
                         <li>Affiliation <span>Independent Solo</span></li>
                     </ul>
                 </div>
-                <div style="font-size: 0.75rem; letter-spacing: 2px; color: var(--gold-raw); font-weight: 600;"></div>
+                <div style="font-size: 0.75rem; letter-spacing: 2px; color: var(--accent-red); font-weight: 600;"></div>
             </div>
             <div class="ticket-main-form">
                 <h3>INITIALIZE INDUCTION DOSSIER</h3>
@@ -858,7 +858,7 @@
             const dynamicDelta = targetMoment - currentMoment;
             
             if (dynamicDelta < 0) {
-                document.getElementById('countdown').innerHTML = "<h2 style='grid-column: 1/-1; text-align: center; font-family: Syne; color: var(--gold-raw);'>PIPELINE CHANNELS CLOSED // APPLICATION CAP HIT</h2>";
+                document.getElementById('countdown').innerHTML = "<h2 style='grid-column: 1/-1; text-align: center; font-family: Syne; color: var(--accent-red);'>PIPELINE CHANNELS CLOSED // APPLICATION CAP HIT</h2>";
                 return;
             }
             
