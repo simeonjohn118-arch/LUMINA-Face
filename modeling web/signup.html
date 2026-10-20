@@ -1,177 +1,713 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Create your LUMINA Face Nigeria account.">
   <title>Sign Up | LUMINA Face Nigeria</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    /* ===== LUMINA FACE RED & BLACK THEME ===== */
     :root {
-      --gold: #ffda79;
-      --dark-blue: #1e1e2f;
-      --darker-blue: #0f0f1a;
-      --glass: rgba(255, 255, 255, 0.05);
-      --glass-border: rgba(255, 255, 255, 0.1);
+      --onyx-pure: #080808;
+      --onyx-deep: #050505;
+      --onyx-surface: #101010;
+      --onyx-card: #121212;
+
+      --lumina-red: #FF1738;
+      --red-deep: #C8102E;
+      --red-glow: rgba(255, 23, 56, 0.25);
+      --red-glow-intense: rgba(255, 23, 56, 0.60);
+
+      --text-primary: #FFFFFF;
+      --text-secondary: #B8B8BE;
+      --text-muted: #777780;
+
+      --border-muted: #292126;
+      --glass: rgba(255, 255, 255, 0.035);
+      --glass-border: rgba(255, 255, 255, 0.09);
+
+      --transition: all 0.3s ease;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--onyx-pure);
+    }
 
     body {
-      background: radial-gradient(circle at center, var(--dark-blue) 0%, var(--darker-blue) 100%);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 24px;
+      position: relative;
+      overflow-x: hidden;
+      background:
+        radial-gradient(
+          ellipse at 15% 15%,
+          rgba(255, 23, 56, 0.12),
+          transparent 42%
+        ),
+        radial-gradient(
+          ellipse at 90% 85%,
+          rgba(200, 16, 46, 0.10),
+          transparent 40%
+        ),
+        var(--onyx-pure);
+      color: var(--text-primary);
     }
 
+    /* Subtle background grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(
+          to right,
+          rgba(255, 23, 56, 0.025) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          to bottom,
+          rgba(255, 23, 56, 0.025) 1px,
+          transparent 1px
+        );
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Decorative red circle */
+    body::after {
+      content: '';
+      position: fixed;
+      width: 350px;
+      height: 350px;
+      border: 1px solid rgba(255, 23, 56, 0.12);
+      border-radius: 50%;
+      right: -180px;
+      top: -160px;
+      box-shadow:
+        0 0 50px rgba(255, 23, 56, 0.06),
+        inset 0 0 50px rgba(255, 23, 56, 0.04);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ===== SIGN-UP CONTAINER ===== */
     .auth-container {
       width: 100%;
-      max-width: 450px; 
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 24px;
-      padding: 40px;
-      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+      max-width: 460px;
+      position: relative;
+      z-index: 1;
+      padding: 38px 40px;
+      overflow: hidden;
+      background: linear-gradient(
+        145deg,
+        rgba(22, 22, 22, 0.97),
+        rgba(8, 8, 8, 0.98)
+      );
+      border: 1px solid var(--border-muted);
+      border-radius: 18px;
+      box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.65),
+        0 0 35px rgba(255, 23, 56, 0.055);
+      animation: enterPage 0.65s ease both;
     }
 
+    .auth-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--lumina-red),
+        #ff697d,
+        var(--lumina-red),
+        transparent
+      );
+      box-shadow: 0 0 18px var(--red-glow);
+    }
+
+    @keyframes enterPage {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== BRAND ===== */
+    .brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .brand-icon {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255, 23, 56, 0.45);
+      border-radius: 50%;
+      background: rgba(255, 23, 56, 0.07);
+      color: var(--lumina-red);
+      font-size: 1.25rem;
+      box-shadow: 0 0 22px rgba(255, 23, 56, 0.10);
+    }
+
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .brand-name span {
+      color: var(--lumina-red);
+    }
+
+    .brand-caption {
+      margin-top: 5px;
+      color: var(--text-muted);
+      font-size: 0.63rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* ===== HEADING ===== */
     .signup-card h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      color: var(--gold);
+      font-size: 2.1rem;
+      line-height: 1.3;
+      color: var(--text-primary);
       margin-bottom: 8px;
       text-align: center;
     }
 
-    .subtitle {
-      color: rgba(255, 255, 255, 0.5);
-      margin-bottom: 35px;
-      font-size: 0.9rem;
-      text-align: center;
+    .signup-card h1 span {
+      color: var(--lumina-red);
     }
 
-    .input-group { position: relative; margin-bottom: 20px; }
+    .subtitle {
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      font-size: 0.83rem;
+      text-align: center;
+      font-weight: 300;
+      line-height: 1.7;
+    }
 
-    .input-group i {
+    /* ===== INPUT FIELDS ===== */
+    .input-group {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .input-group > i {
       position: absolute;
-      left: 18px;
+      left: 16px;
       top: 50%;
       transform: translateY(-50%);
-      color: rgba(255, 255, 255, 0.3);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: var(--transition);
+      pointer-events: none;
     }
 
-    input {
+    .input-group:focus-within > i {
+      color: var(--lumina-red);
+    }
+
+    .input-group input {
+      display: block;
       width: 100%;
-      padding: 16px 16px 16px 52px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      color: #fff;
+      padding: 14px 44px 14px 46px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid var(--border-muted);
+      border-radius: 9px;
+      color: var(--text-primary);
+      font-size: 0.84rem;
+      font-weight: 400;
+      outline: none;
+      transition: var(--transition);
     }
 
-    input:focus { outline: none; border-color: var(--gold); background: rgba(255, 255, 255, 0.1); }
+    .input-group input::placeholder {
+      color: #777780;
+    }
 
+    .input-group input:focus {
+      border-color: var(--lumina-red);
+      background: rgba(255, 23, 56, 0.035);
+      box-shadow: 0 0 0 3px rgba(255, 23, 56, 0.08);
+    }
+
+    .input-group input:-webkit-autofill,
+    .input-group input:-webkit-autofill:hover,
+    .input-group input:-webkit-autofill:focus {
+      -webkit-text-fill-color: #fff;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    /* Password visibility button */
+    .password-toggle {
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 5px;
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
+
+    .password-toggle:hover {
+      color: var(--lumina-red);
+    }
+
+    /* ===== SIGN-UP BUTTON ===== */
     .btn-signup {
       width: 100%;
-      padding: 16px;
-      background: var(--gold);
-      color: var(--darker-blue);
-      border: none;
-      border-radius: 12px;
-      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 15px;
+      margin-top: 7px;
+      background: var(--lumina-red);
+      color: #fff;
+      border: 1px solid var(--lumina-red);
+      border-radius: 9px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
       cursor: pointer;
-      margin-top: 10px;
+      transition: var(--transition);
+      box-shadow: 0 6px 22px rgba(255, 23, 56, 0.16);
     }
 
-    .login-link { margin-top: 20px; text-align: center; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); }
-    .login-link a { color: var(--gold); text-decoration: none; }
+    .btn-signup:hover:not(:disabled) {
+      background: var(--red-deep);
+      border-color: #ff536b;
+      box-shadow: 0 8px 28px rgba(255, 23, 56, 0.30);
+      transform: translateY(-2px);
+    }
+
+    .btn-signup:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .btn-signup:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    /* ===== STATUS MESSAGES ===== */
+    .status-message {
+      display: none;
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 0.77rem;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .status-message.error {
+      display: block;
+      color: #ff9baa;
+      background: rgba(255, 23, 56, 0.09);
+      border: 1px solid rgba(255, 23, 56, 0.24);
+    }
+
+    .status-message.success {
+      display: block;
+      color: #b6f2ce;
+      background: rgba(50, 200, 120, 0.08);
+      border: 1px solid rgba(50, 200, 120, 0.22);
+    }
+
+    /* ===== LOGIN LINK ===== */
+    .login-link {
+      margin-top: 23px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .login-link a {
+      color: var(--lumina-red);
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 4px;
+      transition: var(--transition);
+    }
+
+    .login-link a:hover {
+      color: #ff7b8e;
+      text-decoration: underline;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 0.66rem;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+    }
+
+    footer span {
+      color: var(--lumina-red);
+      font-weight: 600;
+    }
+
+    /* ===== RESPONSIVE DESIGN ===== */
+    @media (max-width: 480px) {
+      body {
+        padding: 16px;
+      }
+
+      .auth-container {
+        padding: 32px 22px;
+        border-radius: 14px;
+      }
+
+      .signup-card h1 {
+        font-size: 1.85rem;
+      }
+
+      .brand-name {
+        font-size: 1.45rem;
+      }
+
+      .subtitle {
+        font-size: 0.79rem;
+        margin-bottom: 24px;
+      }
+
+      .input-group input {
+        font-size: 0.81rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <main class="auth-container">
     <div class="signup-card">
-      <h1>Create Account</h1>
-      <p class="subtitle">Join the elite community of models</p>
+
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fas fa-crown" aria-hidden="true"></i>
+        </div>
+
+        <div class="brand-name">LUMINA <span>FACE</span></div>
+        <p class="brand-caption">Real Faces. Bigger Dreams.</p>
+      </div>
+
+      <h1>Create <span>Account</span></h1>
+      <p class="subtitle">Join the LUMINA Face community and begin your journey.</p>
 
       <form id="signupForm">
+
         <div class="input-group">
-          <i class="fas fa-user"></i>
-          <input type="text" id="signup-name" placeholder="Full Name" required>
+          <i class="fas fa-user" aria-hidden="true"></i>
+          <input
+            type="text"
+            id="signup-name"
+            name="full_name"
+            placeholder="Full Name"
+            autocomplete="name"
+            aria-label="Full name"
+            required
+          >
         </div>
+
         <div class="input-group">
-          <i class="fas fa-envelope"></i>
-          <input type="email" id="signup-email" placeholder="Email Address" required>
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          <input
+            type="email"
+            id="signup-email"
+            name="email"
+            placeholder="Email Address"
+            autocomplete="email"
+            aria-label="Email address"
+            required
+          >
         </div>
+
         <div class="input-group">
-          <i class="fas fa-lock"></i>
-          <input type="password" id="signup-password" placeholder="Create Password" required>
+          <i class="fas fa-lock" aria-hidden="true"></i>
+          <input
+            type="password"
+            id="signup-password"
+            name="password"
+            placeholder="Create Password"
+            autocomplete="new-password"
+            aria-label="Create password"
+            minlength="6"
+            required
+          >
+          <button
+            type="button"
+            class="password-toggle"
+            data-target="signup-password"
+            aria-label="Show password"
+            aria-pressed="false"
+          >
+            <i class="fas fa-eye" aria-hidden="true"></i>
+          </button>
         </div>
+
         <div class="input-group">
-          <i class="fas fa-shield-alt"></i>
-          <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+          <i class="fas fa-shield-halved" aria-hidden="true"></i>
+          <input
+            type="password"
+            id="confirm-password"
+            name="confirm_password"
+            placeholder="Confirm Password"
+            autocomplete="new-password"
+            aria-label="Confirm password"
+            minlength="6"
+            required
+          >
+          <button
+            type="button"
+            class="password-toggle"
+            data-target="confirm-password"
+            aria-label="Show password"
+            aria-pressed="false"
+          >
+            <i class="fas fa-eye" aria-hidden="true"></i>
+          </button>
         </div>
-        <button type="submit" class="btn-signup" id="submitBtn">Get Started</button>
+
+        <button type="submit" class="btn-signup" id="submitBtn">
+          <i class="fas fa-user-plus" aria-hidden="true"></i>
+          <span>Create My Account</span>
+        </button>
+
+        <div
+          id="statusMessage"
+          class="status-message"
+          role="status"
+          aria-live="polite"
+        ></div>
+
       </form>
 
       <div class="login-link">
-        Already a member? <a href="login.html">Login</a>
+        Already a member?
+        <a href="login.html">Login to your account</a>
       </div>
+
+      <footer>
+        EST. 2026 • <span>LUMINA FACE</span>
+      </footer>
+
     </div>
   </main>
 
+  <!-- Supabase authentication library -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
-    const SUPABASE_URL = 'https://binffdngnacbszygmbze.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_oW8_1I_YuaK_r8O_2eUbGg_iDo6Uewp'; 
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-  
-    document.getElementById('signupForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const name = document.getElementById('signup-name').value;
-      const email = document.getElementById('signup-email').value.trim(); // Added .trim() here
+    // ===== SUPABASE CONFIGURATION =====
+    const SUPABASE_URL =
+      'https://binffdngnacbszygmbze.supabase.co';
+
+    const SUPABASE_KEY =
+      'sb_publishable_oW8_1I_YuaK_r8O_2eUbGg_iDo6Uewp';
+
+    const supabaseClient = supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+    // ===== PAGE ELEMENTS =====
+    const signupForm = document.getElementById('signupForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const statusMessage = document.getElementById('statusMessage');
+
+    // ===== STATUS MESSAGES =====
+    function showMessage(message, type) {
+      statusMessage.textContent = message;
+      statusMessage.className = 'status-message ' + type;
+    }
+
+    function clearMessage() {
+      statusMessage.textContent = '';
+      statusMessage.className = 'status-message';
+    }
+
+    // ===== PASSWORD VISIBILITY =====
+    document.querySelectorAll('.password-toggle').forEach(function (button) {
+      button.addEventListener('click', function () {
+        const target = document.getElementById(button.dataset.target);
+        const isPassword = target.type === 'password';
+
+        target.type = isPassword ? 'text' : 'password';
+
+        button.innerHTML = isPassword
+          ? '<i class="fas fa-eye-slash" aria-hidden="true"></i>'
+          : '<i class="fas fa-eye" aria-hidden="true"></i>';
+
+        button.setAttribute(
+          'aria-label',
+          isPassword ? 'Hide password' : 'Show password'
+        );
+
+        button.setAttribute('aria-pressed', String(isPassword));
+      });
+    });
+
+    // ===== SIGN-UP AUTHENTICATION =====
+    signupForm.addEventListener('submit', async function (event) {
+      event.preventDefault();
+      clearMessage();
+
+      const name = document.getElementById('signup-name').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
       const password = document.getElementById('signup-password').value;
       const confirmPassword = document.getElementById('confirm-password').value;
-  
-      // 1. Basic Validation
-      if (password !== confirmPassword) {
-        alert("Passwords do not match!");
+
+      // Validate full name.
+      if (!name) {
+        showMessage('Please enter your full name.', 'error');
         return;
       }
-  
-      const submitBtn = document.getElementById('submitBtn');
-      submitBtn.innerText = "Creating Account...";
-      submitBtn.disabled = true;
-  
-      // 2. Supabase Auth Sign Up
-      const { data, error } = await supabaseClient.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-          data: {
-            full_name: name, 
-          }
-        }
-      });
-  
-      if (error) {
-        alert("Error: " + error.message);
-      } else {
-        // 3. Updated Success Logic (No confirmation email needed)
-        if (data.user && data.user.identities && data.user.identities.length === 0) {
-            alert("This email is already registered.");
-        } else {
-            alert("Account created successfully! Redirecting to login...");
-            window.location.href = "login.html"; // Redirects straight to your clean login page
-        }
+
+      // Validate matching passwords.
+      if (password !== confirmPassword) {
+        showMessage('Your passwords do not match. Please check and try again.', 'error');
+        return;
       }
-      
-      submitBtn.innerText = "Get Started";
-      submitBtn.disabled = false;
+
+      if (password.length < 6) {
+        showMessage('Your password must contain at least 6 characters.', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML =
+        '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i>' +
+        '<span>Creating Account...</span>';
+
+      try {
+        const { data, error } = await supabaseClient.auth.signUp({
+          email: email,
+          password: password,
+          options: {
+            data: {
+              full_name: name
+            }
+          }
+        });
+
+        if (error) {
+          showMessage(error.message, 'error');
+          return;
+        }
+
+        // An empty identities array can indicate an existing account.
+        if (
+          data.user &&
+          Array.isArray(data.user.identities) &&
+          data.user.identities.length === 0
+        ) {
+          showMessage(
+            'This email may already be registered. Try logging in or resetting your password.',
+            'error'
+          );
+          return;
+        }
+
+        if (data.user) {
+          if (data.session) {
+            showMessage(
+              'Your account has been created successfully. Redirecting to login...',
+              'success'
+            );
+          } else {
+            showMessage(
+              'Your account has been created. If email confirmation is enabled in Supabase, check your inbox before logging in.',
+              'success'
+            );
+          }
+
+          // Keep the original registration flow.
+          window.setTimeout(function () {
+            window.location.href = 'login.html';
+          }, 1800);
+
+        } else {
+          showMessage(
+            'We could not confirm account creation. Please try again.',
+            'error'
+          );
+        }
+
+      } catch (error) {
+        console.error('Sign-up error:', error);
+
+        showMessage(
+          'A connection error occurred. Please check your internet connection and try again.',
+          'error'
+        );
+
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML =
+          '<i class="fas fa-user-plus" aria-hidden="true"></i>' +
+          '<span>Create My Account</span>';
+      }
     });
   </script>
+
 </body>
 </html>
