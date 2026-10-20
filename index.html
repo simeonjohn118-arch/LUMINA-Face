@@ -745,7 +745,7 @@
         </div>
         <div class="counter-grid">
             <div class="counter-box">
-                <div class="counter-val" id="days">5</div>
+                <div class="counter-val" id="days">10</div>
                 <div class="counter-lbl">Days Rem</div>
             </div>
             <div class="counter-box">
@@ -851,30 +851,42 @@
             }
         });
 
-        // Exact Structural Countdown Engine
+        // Five-Day Countdown Engine
+        // Starts at five days whenever the page is loaded or refreshed.
+        const COUNTDOWN_DURATION = 5 * 24 * 60 * 60 * 1000;
+        const targetMoment = Date.now() + COUNTDOWN_DURATION;
+        let countdownInterval;
+
         function runCountdown() {
-            const targetMoment = new Date('October 20, 2026 23:59:59').getTime();
-            const currentMoment = new Date().getTime();
-            const dynamicDelta = targetMoment - currentMoment;
-            
-            if (dynamicDelta < 0) {
-                document.getElementById('countdown').innerHTML = "<h2 style='grid-column: 1/-1; text-align: center; font-family: Syne; color: var(--accent-red);'>PIPELINE CHANNELS CLOSED // APPLICATION CAP HIT</h2>";
+            const dynamicDelta = targetMoment - Date.now();
+
+            if (dynamicDelta <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                clearInterval(countdownInterval);
+                document.getElementById('countdown').innerHTML = `
+                    <h2 style="grid-column: 1 / -1; text-align: center; font-family: Syne, sans-serif; color: var(--accent-red);">
+                        APPLICATIONS CLOSED
+                    </h2>
+                `;
                 return;
             }
-            
+
             const d = Math.floor(dynamicDelta / (1000 * 60 * 60 * 24));
             const h = Math.floor((dynamicDelta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((dynamicDelta % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((dynamicDelta % (1000 * 60)) / 1000);
-            
-            document.getElementById('days').textContent = d.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = h.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = m.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = s.toString().padStart(2, '0');
+
+            document.getElementById('days').textContent = String(d).padStart(2, '0');
+            document.getElementById('hours').textContent = String(h).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(s).padStart(2, '0');
         }
-        
-        setInterval(runCountdown, 1000);
+
         runCountdown();
+        countdownInterval = setInterval(runCountdown, 1000);
 
         // Control Interactive Popup Display States
         document.addEventListener('DOMContentLoaded', () => {
