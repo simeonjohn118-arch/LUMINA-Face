@@ -675,6 +675,70 @@
             .editorial-matrix { grid-template-columns: 1fr; }
             .noir-form-row { grid-template-columns: 1fr; gap: 10px; }
         }
+
+
+        /* Signature details: editorial ticker, motion, mobile navigation */
+        html { scroll-behavior: smooth; scroll-padding-top: 95px; }
+        ::selection { background: var(--lumina-red); color: #fff; }
+        a:focus-visible, button:focus-visible, input:focus-visible {
+            outline: 2px solid var(--lumina-red); outline-offset: 4px;
+        }
+        .brand-logo span { text-shadow: 0 0 22px rgba(255,23,56,.45); }
+        .page-hero { position: relative; isolation: isolate; }
+        .page-hero::after {
+            content: ''; position: absolute; z-index: -1; inset: 0;
+            background: linear-gradient(90deg, rgba(0,0,0,.45), transparent 75%);
+            pointer-events: none;
+        }
+        .page-hero h1 { max-width: 1050px; text-wrap: balance; }
+        .page-hero h1 span { display: block; text-shadow: 0 0 32px rgba(255,23,56,.18); }
+        .editorial-ticker {
+            overflow: hidden; background: var(--lumina-red); color: #fff;
+            border-bottom: 1px solid rgba(255,255,255,.15); white-space: nowrap;
+        }
+        .ticker-track { display: flex; width: max-content; animation: tickerMove 28s linear infinite; }
+        .ticker-track span { padding: 15px 24px; font-family: 'Syne',sans-serif; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 2px; font-size: .82rem; }
+        .ticker-track b { color: #080808; padding-left: 24px; }
+        @keyframes tickerMove { to { transform: translateX(-50%); } }
+        .editorial-card, .model-cell, .ticket-wrapper { box-shadow: 0 14px 40px rgba(0,0,0,.18); }
+        .editorial-card:hover, .model-cell:hover { box-shadow: 0 18px 55px rgba(255,23,56,.09); }
+        .raw-btn-filled { box-shadow: 0 8px 24px rgba(255,23,56,.12); }
+        .raw-btn:active { transform: translateY(1px); }
+        .reveal-ready .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal-ready .reveal.is-visible { opacity: 1; transform: translateY(0); }
+        .mobile-menu-toggle { display: none; background: transparent; color: #fff; border: 1px solid var(--border-raw);
+            width: 44px; height: 44px; font-size: 1.1rem; cursor: pointer; }
+        .form-feedback { display: none; margin-top: 16px; padding: 12px 14px; border: 1px solid var(--border-raw); line-height: 1.5; font-size: .9rem; }
+        .form-feedback.visible { display: block; }
+        .form-feedback.error { color: #ff8b9b; border-color: rgba(255,23,56,.65); }
+        .form-feedback.success { color: #fff; border-color: var(--lumina-red); }
+        .back-to-top { position: fixed; right: 22px; bottom: 22px; z-index: 900; width: 46px; height: 46px;
+            border: 1px solid var(--lumina-red); background: rgba(8,8,8,.9); color: var(--lumina-red);
+            cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(8px); transition: var(--transition); }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .back-to-top:hover { background: var(--lumina-red); color: #fff; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+            .reveal-ready .reveal { opacity: 1; transform: none; }
+        }
+        @media (max-width: 768px) {
+            .nav-grid { position: relative; grid-template-columns: auto auto auto; gap: 12px; }
+            .brand-logo { font-size: 1.45rem; }
+            .mobile-menu-toggle { display: inline-flex; align-items: center; justify-content: center; grid-column: 2; grid-row: 1; }
+            .nav-cta-zone { grid-column: 3; grid-row: 1; }
+            .nav-cta-zone .raw-btn { padding: 10px 12px; font-size: .68rem; letter-spacing: 1px; }
+            .menu-links { display: none; position: absolute; top: 100%; left: 0; right: 0; margin: 0; padding: 14px 20px 20px;
+                background: rgba(8,8,8,.98); border: 1px solid var(--border-raw); border-top: 0; flex-direction: column; gap: 0; }
+            .menu-links.open { display: flex; }
+            .menu-links li a { display: block; padding: 14px 4px; }
+            .page-hero { padding-left: 22px; padding-right: 22px; }
+            .metrics-quad { grid-template-columns: repeat(2, 1fr); }
+            .modal-dossier-text { padding: 30px 24px; }
+            .modal-hero-frame { height: 34vh; }
+        }
+
     </style>
 </head>
 <body>
@@ -691,11 +755,12 @@
     <header id="header">
         <div class="nav-grid">
             <a href="index.html" class="brand-logo">LUMINA<span>.</span>F</a>
-            <ul class="menu-links">
+            <ul class="menu-links" id="primaryMenu">
                 <li><a href="#magazine">Editorials</a></li>
                 <li><a href="#gallery">Featured Faces</a></li>
                 <li><a href="#apply">Dossier Sheet</a></li>
             </ul>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primaryMenu"><i class="fa-solid fa-bars"></i></button>
             <div class="nav-cta-zone">
                 <a href="#apply" class="raw-btn">Submit File</a>
             </div>
@@ -706,6 +771,13 @@
         <h1>TALENT DEVIATION.<span>ROSTER FILES.</span></h1>
         <p>Review current operational high-fashion visual narratives and update registration profiles inside the localized pipeline architecture.</p>
     </section>
+
+    <div class="editorial-ticker" aria-label="LUMINA FACE brand statement">
+        <div class="ticker-track" aria-hidden="true">
+            <span>Presence over permission <b>✦</b></span><span>Built for the next face of fashion <b>✦</b></span><span>Distinct by design <b>✦</b></span><span>LUMINA FACE <b>✦</b></span>
+            <span>Presence over permission <b>✦</b></span><span>Built for the next face of fashion <b>✦</b></span><span>Distinct by design <b>✦</b></span><span>LUMINA FACE <b>✦</b></span>
+        </div>
+    </div>
 
     <section id="magazine" class="index-section">
         <h2 class="index-title">LATEST <span>EDITORIALS</span></h2>
@@ -861,16 +933,49 @@
         </div>
     </footer>
 
+    <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
     <script>
         // Smooth background header shifting
+        const headerElement = document.getElementById('header');
+        const backToTopButton = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 40) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            const isScrolled = window.scrollY > 40;
+            headerElement.classList.toggle('scrolled', isScrolled);
+            backToTopButton.classList.toggle('visible', window.scrollY > 500);
+        }, { passive: true });
+        backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // Accessible mobile navigation
+        const menuToggle = document.getElementById('mobileMenuToggle');
+        const primaryMenu = document.getElementById('primaryMenu');
+        menuToggle.addEventListener('click', () => {
+            const isOpen = primaryMenu.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
+            menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+            menuToggle.innerHTML = isOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
         });
+        primaryMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+            primaryMenu.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Open navigation menu');
+            menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        }));
+
+        // Gentle scroll reveals, with a safe fallback for older browsers
+        document.documentElement.classList.add('reveal-ready');
+        document.querySelectorAll('.editorial-card, .model-cell, .ticket-wrapper, .footer-grid > div').forEach(el => el.classList.add('reveal'));
+        if ('IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            }), { threshold: 0.12 });
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+        } else {
+            document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+        }
 
         // Interactive Roster Display Controllers
         const portfolioModalElement = document.getElementById('portfolioModal');
@@ -894,16 +999,48 @@
             else overlay.classList.remove('active');
         }
 
-        // Intercept standard form to showcase overlay gracefully before submission logic redirection
-        document.getElementById('model-form').addEventListener('submit', function(e) {
-            // Note: If you want asynchronous formspree tracking without page redirection, 
-            // you'd call e.preventDefault() here and run a native fetch layout request instead.
-            toggleSuccessModal(true);
+        // Submit to Formspree without leaving the page; show success only after confirmation.
+        const modelForm = document.getElementById('model-form');
+        const formFeedback = document.getElementById('formFeedback');
+        const submitButton = modelForm.querySelector('button[type="submit"]');
+        modelForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            formFeedback.className = 'form-feedback';
+            formFeedback.textContent = '';
+            submitButton.disabled = true;
+            const originalButtonText = submitButton.textContent;
+            submitButton.textContent = 'TRANSMITTING...';
+            try {
+                const response = await fetch(modelForm.action, {
+                    method: 'POST',
+                    body: new FormData(modelForm),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (!response.ok) throw new Error('The form service did not accept the submission.');
+                formFeedback.textContent = 'Your application was submitted successfully. The LUMINA FACE team can now review your details.';
+                formFeedback.className = 'form-feedback visible success';
+                toggleSuccessModal(true);
+                modelForm.reset();
+            } catch (error) {
+                formFeedback.textContent = 'We could not submit your application right now. Please check your connection and try again, or contact luminafacecustomercare@gmail.com.';
+                formFeedback.className = 'form-feedback visible error';
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
         });
 
         // Close Popups on Background Clicks
         window.addEventListener('click', (event) => {
             if (event.target === portfolioModalElement) closePortfolio();
+        });
+        window.addEventListener('keydown', event => {
+            if (event.key === 'Escape') {
+                closePortfolio();
+                toggleSuccessModal(false);
+                primaryMenu.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
         });
     </script>
 </body>
