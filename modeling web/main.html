@@ -19,9 +19,9 @@
             --bg-deep: #080808;       /* Matte Obsidian Black */
             --bg-card: #121212;       /* Elevated Surface Black */
             --text-pure: #FFFFFF;     /* High Contrast White */
-            --gold-raw: #E5A93C;      /* Burnished Liquid Gold */
-            --gold-dim: #C59232;      /* Deep Luxury Shadow Gold */
-            --border-raw: rgba(229, 169, 60, 0.2); /* Subtle Gold Wireframe */
+            --lumina-red: #FF1738;      /* Lumina Signal Red */
+            --red-deep: #C8102E;      /* Deep Signal Red */
+            --border-raw: rgba(255, 23, 56, 0.22); /* Subtle Red Wireframe */
             --transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
         
@@ -53,7 +53,7 @@
         }
 
         .success-content {
-            border: 1px solid var(--gold-raw);
+            border: 1px solid var(--lumina-red);
             background: var(--bg-card);
             padding: 40px;
             max-width: 500px;
@@ -64,7 +64,7 @@
 
         .success-icon {
             font-size: 3rem;
-            color: var(--gold-raw);
+            color: var(--lumina-red);
             margin-bottom: 20px;
         }
 
@@ -119,7 +119,7 @@
             color: var(--text-pure);
         }
 
-        .brand-logo span { color: var(--gold-raw); }
+        .brand-logo span { color: var(--lumina-red); }
         
         .menu-links {
             display: flex;
@@ -142,12 +142,12 @@
             transition: color 0.3s ease;
         }
 
-        .menu-links a:hover { color: var(--gold-raw); }
+        .menu-links a:hover { color: var(--lumina-red); }
 
         /* Asymmetric Buttons */
         .raw-btn {
             padding: 12px 28px;
-            border: 1px solid var(--gold-raw);
+            border: 1px solid var(--lumina-red);
             background: transparent;
             text-transform: uppercase;
             font-size: 0.8rem;
@@ -155,27 +155,27 @@
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
-            color: var(--gold-raw);
+            color: var(--lumina-red);
             display: inline-block;
             transition: var(--transition);
             white-space: nowrap;
         }
 
         .raw-btn:hover {
-            background: var(--gold-raw);
+            background: var(--lumina-red);
             color: var(--bg-deep);
-            box-shadow: 0 0 25px rgba(229, 169, 60, 0.3);
+            box-shadow: 0 0 25px rgba(255, 23, 56, 0.3);
         }
 
         .raw-btn-filled {
-            background: var(--gold-raw);
+            background: var(--lumina-red);
             color: var(--bg-deep);
             text-align: center;
         }
 
         .raw-btn-filled:hover {
             background: transparent;
-            color: var(--gold-raw);
+            color: var(--lumina-red);
         }
 
         /* Hero Sub-Header Variant */
@@ -198,7 +198,7 @@
             color: var(--text-pure);
         }
 
-        .page-hero h1 span { color: var(--gold-raw); }
+        .page-hero h1 span { color: var(--lumina-red); }
 
         .page-hero p {
             margin-top: 20px;
@@ -221,7 +221,7 @@
             margin-bottom: clamp(40px, 7vw, 80px);
         }
 
-        .index-title span { color: var(--gold-raw); }
+        .index-title span { color: var(--lumina-red); }
 
         /* Editorial Editorial Grid Updates */
         .editorial-matrix {
@@ -238,7 +238,7 @@
         }
 
         .editorial-card:hover {
-            border-color: var(--gold-raw);
+            border-color: var(--lumina-red);
             transform: translateY(-5px);
         }
 
@@ -270,7 +270,7 @@
             font-family: 'Syne', sans-serif;
             font-size: 1.3rem;
             text-transform: uppercase;
-            color: var(--gold-raw);
+            color: var(--lumina-red);
             margin-bottom: 10px;
         }
 
@@ -296,7 +296,7 @@
         }
 
         .model-cell:hover {
-            border-color: var(--gold-raw);
+            border-color: var(--lumina-red);
         }
 
         .model-photo-box {
@@ -329,7 +329,7 @@
         }
 
         .model-meta-bar i {
-            color: var(--gold-raw);
+            color: var(--lumina-red);
             font-size: 0.8rem;
             opacity: 0;
             transition: var(--transition);
@@ -350,7 +350,7 @@
         .ticket-wrapper {
             max-width: 1100px;
             margin: 0 auto;
-            border: 1px solid var(--gold-raw);
+            border: 1px solid var(--lumina-red);
             background: var(--bg-card);
             display: grid;
             grid-template-columns: 1fr 1.3fr;
@@ -372,7 +372,7 @@
             font-size: clamp(2.2rem, 4vw, 3rem);
             text-transform: uppercase;
             line-height: 1;
-            color: var(--gold-raw);
+            color: var(--lumina-red);
         }
 
         .criteria-stack {
@@ -391,7 +391,7 @@
         }
 
         .criteria-stack li span {
-            color: var(--gold-raw);
+            color: var(--lumina-red);
             font-weight: 600;
         }
 
@@ -429,8 +429,8 @@
 
         .noir-form-row input:focus, .noir-input-group input:focus {
             outline: none;
-            border-color: var(--gold-raw);
-            background: rgba(229,169,60,0.05);
+            border-color: var(--lumina-red);
+            background: rgba(255,23,56,0.05);
         }
 
         .noir-input-group {
@@ -442,7 +442,7 @@
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--gold-raw);
+            color: var(--lumina-red);
             margin-bottom: 10px;
         }
 
@@ -493,7 +493,7 @@
         }
 
         .modal-container {
-            border: 1px solid var(--gold-raw);
+            border: 1px solid var(--lumina-red);
             background: var(--bg-card);
             width: 100%;
             max-width: 1000px;
@@ -507,7 +507,7 @@
             top: 20px;
             right: 25px;
             font-size: 2rem;
-            color: var(--gold-raw);
+            color: var(--lumina-red);
             cursor: pointer;
             z-index: 10;
             transition: var(--transition);
@@ -535,7 +535,7 @@
             font-family: 'Syne', sans-serif;
             font-size: 2.5rem;
             text-transform: uppercase;
-            color: var(--gold-raw);
+            color: var(--lumina-red);
             margin-bottom: 20px;
         }
 
@@ -545,7 +545,7 @@
         }
 
         .modal-dossier-text p strong {
-            color: var(--gold-raw);
+            color: var(--lumina-red);
             text-transform: uppercase;
             font-size: 0.85rem;
             letter-spacing: 1px;
@@ -582,7 +582,7 @@
             letter-spacing: -1px;
         }
 
-        .footer-brand h3 span { color: var(--gold-raw); }
+        .footer-brand h3 span { color: var(--lumina-red); }
 
         .footer-brand p {
             color: rgba(255,255,255,0.5);
@@ -595,7 +595,7 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 25px;
-            color: var(--gold-raw);
+            color: var(--lumina-red);
         }
 
         .footer-nav ul { list-style: none; }
@@ -608,7 +608,7 @@
             letter-spacing: 1px;
             transition: var(--transition);
         }
-        .footer-nav a:hover { color: var(--gold-raw); }
+        .footer-nav a:hover { color: var(--lumina-red); }
 
         .footer-contact p {
             font-size: 0.9rem;
@@ -637,7 +637,7 @@
         }
 
         .noir-inline-newsletter button {
-            background: var(--gold-raw);
+            background: var(--lumina-red);
             border: none;
             color: #000;
             padding: 0 20px;
@@ -776,7 +776,7 @@
                         <li>Affiliation <span>Independent Solo</span></li>
                     </ul>
                 </div>
-                <div style="font-size: 0.75rem; letter-spacing: 2px; color: var(--gold-raw); font-weight: 600;"></div>
+                <div style="font-size: 0.75rem; letter-spacing: 2px; color: var(--lumina-red); font-weight: 600;"></div>
             </div>
             
             <div class="ticket-main-form">
@@ -857,7 +857,7 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 LUMINA FACE // NOIR INFRASTRUCTURE CO.</p>
-            <p>DESIGN INTERFACE SYSTEM v4.2 // BLACK & GOLD ED.</p>
+            <p>DESIGN INTERFACE SYSTEM v4.2 // RED & BLACK ED.</p>
         </div>
     </footer>
 
