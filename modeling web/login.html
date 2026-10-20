@@ -1,168 +1,714 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Sign in to your LUMINA Face Nigeria account.">
   <title>Login | LUMINA Face Nigeria</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    /* ===== LUMINA FACE RED & BLACK DESIGN SYSTEM ===== */
     :root {
-      --gold: #ffda79;
-      --dark-blue: #1e1e2f;
-      --darker-blue: #0f0f1a;
-      --glass: rgba(255, 255, 255, 0.05);
-      --glass-border: rgba(255, 255, 255, 0.1);
+      --onyx-pure: #080808;
+      --onyx-deep: #050505;
+      --onyx-surface: #101010;
+      --onyx-card: #121212;
+
+      --lumina-red: #FF1738;
+      --red-deep: #C8102E;
+      --red-glow: rgba(255, 23, 56, 0.25);
+      --red-glow-intense: rgba(255, 23, 56, 0.60);
+
+      --text-primary: #FFFFFF;
+      --text-secondary: #B8B8BE;
+      --text-muted: #777780;
+
+      --border-muted: #292126;
+      --glass: rgba(255, 255, 255, 0.035);
+      --glass-border: rgba(255, 255, 255, 0.09);
+
+      --transition: all 0.3s ease;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--onyx-pure);
+    }
 
     body {
-      background: radial-gradient(circle at center, var(--dark-blue) 0%, var(--darker-blue) 100%);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 24px;
+      position: relative;
+      overflow-x: hidden;
+      background:
+        radial-gradient(
+          ellipse at 15% 15%,
+          rgba(255, 23, 56, 0.12) 0%,
+          transparent 42%
+        ),
+        radial-gradient(
+          ellipse at 90% 85%,
+          rgba(200, 16, 46, 0.10) 0%,
+          transparent 40%
+        ),
+        var(--onyx-pure);
+      color: var(--text-primary);
     }
 
+    /* Subtle background grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(
+          to right,
+          rgba(255, 23, 56, 0.025) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          to bottom,
+          rgba(255, 23, 56, 0.025) 1px,
+          transparent 1px
+        );
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Decorative red light */
+    body::after {
+      content: '';
+      position: fixed;
+      width: 350px;
+      height: 350px;
+      border: 1px solid rgba(255, 23, 56, 0.12);
+      border-radius: 50%;
+      right: -180px;
+      top: -160px;
+      box-shadow:
+        0 0 50px rgba(255, 23, 56, 0.06),
+        inset 0 0 50px rgba(255, 23, 56, 0.04);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ===== LOGIN CONTAINER ===== */
     .auth-container {
       width: 100%;
       max-width: 450px;
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 24px;
-      padding: 40px;
-      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+      position: relative;
+      z-index: 1;
+      padding: 42px;
+      overflow: hidden;
+      background: linear-gradient(
+        145deg,
+        rgba(22, 22, 22, 0.97),
+        rgba(8, 8, 8, 0.98)
+      );
+      border: 1px solid var(--border-muted);
+      border-radius: 18px;
+      box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.65),
+        0 0 35px rgba(255, 23, 56, 0.055);
+      animation: enterPage 0.65s ease both;
     }
 
+    /* Red top accent */
+    .auth-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--lumina-red),
+        #ff697d,
+        var(--lumina-red),
+        transparent
+      );
+      box-shadow: 0 0 18px var(--red-glow);
+    }
+
+    @keyframes enterPage {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== BRAND ===== */
+    .brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .brand-icon {
+      width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 13px;
+      border: 1px solid rgba(255, 23, 56, 0.45);
+      border-radius: 50%;
+      background: rgba(255, 23, 56, 0.07);
+      color: var(--lumina-red);
+      font-size: 1.35rem;
+      box-shadow: 0 0 22px rgba(255, 23, 56, 0.10);
+    }
+
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .brand-name span {
+      color: var(--lumina-red);
+    }
+
+    .brand-caption {
+      margin-top: 6px;
+      color: var(--text-muted);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* ===== LOGIN HEADING ===== */
     .login-card h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      color: var(--gold);
-      margin-bottom: 8px;
+      font-size: 2.15rem;
+      line-height: 1.3;
+      color: var(--text-primary);
       text-align: center;
+      margin-bottom: 9px;
+    }
+
+    .login-card h1 span {
+      color: var(--lumina-red);
     }
 
     .subtitle {
-      color: rgba(255, 255, 255, 0.5);
-      margin-bottom: 35px;
-      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      font-size: 0.85rem;
       text-align: center;
+      font-weight: 300;
+      line-height: 1.7;
     }
 
-    .input-group { position: relative; margin-bottom: 20px; }
+    /* ===== INPUT FIELDS ===== */
+    .input-group {
+      position: relative;
+      margin-bottom: 19px;
+    }
 
     .input-group i {
       position: absolute;
-      left: 18px;
+      left: 17px;
       top: 50%;
       transform: translateY(-50%);
-      color: rgba(255, 255, 255, 0.3);
-      transition: 0.3s;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      transition: var(--transition);
+      pointer-events: none;
     }
 
-    input {
+    .input-group:focus-within i {
+      color: var(--lumina-red);
+    }
+
+    .input-group input {
+      display: block;
       width: 100%;
-      padding: 16px 16px 16px 52px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      color: #fff;
+      padding: 15px 16px 15px 48px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid var(--border-muted);
+      border-radius: 9px;
+      color: var(--text-primary);
+      font-size: 0.88rem;
+      font-weight: 400;
+      outline: none;
+      transition: var(--transition);
     }
 
-    input:focus { outline: none; border-color: var(--gold); background: rgba(255, 255, 255, 0.1); }
-    input:focus + i { color: var(--gold); }
+    .input-group input::placeholder {
+      color: #777780;
+    }
 
+    .input-group input:focus {
+      border-color: var(--lumina-red);
+      background: rgba(255, 23, 56, 0.035);
+      box-shadow: 0 0 0 3px rgba(255, 23, 56, 0.08);
+    }
+
+    .input-group input:-webkit-autofill,
+    .input-group input:-webkit-autofill:hover,
+    .input-group input:-webkit-autofill:focus {
+      -webkit-text-fill-color: #fff;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    /* Password visibility control */
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 5px;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .password-toggle:hover {
+      color: var(--lumina-red);
+    }
+
+    .input-group input[type="password"],
+    .input-group input[type="text"].password-field {
+      padding-right: 45px;
+    }
+
+    /* ===== REMEMBER / FORGOT ===== */
+    .form-options {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 5px 0 22px;
+      font-size: 0.76rem;
+    }
+
+    .remember-me {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .remember-me input {
+      accent-color: var(--lumina-red);
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+    }
+
+    .options a,
+    .form-options a {
+      color: var(--lumina-red);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .options a:hover,
+    .form-options a:hover {
+      color: #ff7b8e;
+      text-decoration: underline;
+    }
+
+    /* ===== LOGIN BUTTON ===== */
     .btn-login {
       width: 100%;
-      padding: 16px;
-      background: var(--gold);
-      color: var(--darker-blue);
-      border: none;
-      border-radius: 12px;
-      font-weight: 700;
+      padding: 15px 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      background: var(--lumina-red);
+      color: #fff;
+      border: 1px solid var(--lumina-red);
+      border-radius: 9px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: 0.3s;
-      margin-top: 10px;
+      transition: var(--transition);
+      box-shadow: 0 6px 22px rgba(255, 23, 56, 0.16);
     }
 
-    .btn-login:hover { background: #fff; transform: translateY(-3px); }
+    .btn-login:hover:not(:disabled) {
+      background: var(--red-deep);
+      border-color: #ff536b;
+      box-shadow: 0 8px 28px rgba(255, 23, 56, 0.30);
+      transform: translateY(-2px);
+    }
 
+    .btn-login:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .btn-login:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    /* ===== STATUS MESSAGE ===== */
+    .status-message {
+      display: none;
+      margin-top: 17px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .status-message.error {
+      display: block;
+      color: #ff9baa;
+      background: rgba(255, 23, 56, 0.09);
+      border: 1px solid rgba(255, 23, 56, 0.24);
+    }
+
+    .status-message.success {
+      display: block;
+      color: #b6f2ce;
+      background: rgba(50, 200, 120, 0.08);
+      border: 1px solid rgba(50, 200, 120, 0.22);
+    }
+
+    /* ===== DIVIDER ===== */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 26px 0;
+      color: var(--text-muted);
+      font-size: 0.68rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      height: 1px;
+      flex: 1;
+      background: var(--border-muted);
+    }
+
+    /* ===== ACCOUNT OPTIONS ===== */
     .options {
       display: flex;
-      justify-content: space-between;
-      margin-top: 25px;
-      font-size: 0.85rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 7px;
+      font-size: 0.81rem;
+      color: var(--text-secondary);
+      text-align: center;
     }
 
-    .options a { color: var(--gold); text-decoration: none; opacity: 0.8; }
-    .options a:hover { opacity: 1; text-decoration: underline; }
+    .options a {
+      font-weight: 600;
+    }
 
-    footer { 
-      margin-top: 30px; 
-      text-align: center; 
-      font-size: 0.75rem; 
-      color: rgba(255,255,255,0.3); 
+    /* ===== FOOTER ===== */
+    footer {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      text-align: center;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      line-height: 1.8;
+    }
+
+    footer .footer-brand {
+      color: var(--lumina-red);
+      font-weight: 600;
+    }
+
+    footer .footer-tagline {
+      display: block;
+      margin-top: 5px;
+      color: #62626b;
+      font-size: 0.62rem;
+      letter-spacing: 1px;
+    }
+
+    /* ===== RESPONSIVE DESIGN ===== */
+    @media (max-width: 480px) {
+      body {
+        padding: 16px;
+      }
+
+      .auth-container {
+        padding: 32px 23px;
+        border-radius: 14px;
+      }
+
+      .login-card h1 {
+        font-size: 1.85rem;
+      }
+
+      .brand-name {
+        font-size: 1.5rem;
+      }
+
+      .subtitle {
+        font-size: 0.8rem;
+        margin-bottom: 27px;
+      }
+
+      .form-options {
+        font-size: 0.7rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <main class="auth-container">
     <div class="login-card">
-      <h1>Welcome Back</h1>
-      <p class="subtitle">Sign in to your LUMINA Face account</p>
+
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fas fa-crown" aria-hidden="true"></i>
+        </div>
+        <div class="brand-name">LUMINA <span>FACE</span></div>
+        <p class="brand-caption">Real Faces. Bigger Dreams.</p>
+      </div>
+
+      <h1>Welcome <span>Back</span></h1>
+      <p class="subtitle">
+        Sign in to access your LUMINA Face account.
+      </p>
 
       <form id="loginForm">
         <div class="input-group">
-          <i class="fas fa-envelope"></i>
-          <input type="email" id="email" placeholder="Email Address" required>
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email Address"
+            autocomplete="email"
+            aria-label="Email address"
+            required
+          >
         </div>
 
         <div class="input-group">
-          <i class="fas fa-lock"></i>
-          <input type="password" id="password" placeholder="Password" required>
+          <i class="fas fa-lock" aria-hidden="true"></i>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            autocomplete="current-password"
+            aria-label="Password"
+            required
+          >
+          <button
+            type="button"
+            class="password-toggle"
+            id="passwordToggle"
+            aria-label="Show password"
+            aria-pressed="false"
+          >
+            <i class="fas fa-eye" aria-hidden="true"></i>
+          </button>
         </div>
 
-        <button type="submit" class="btn-login" id="loginBtn">Login to Portal</button>
+        <div class="form-options">
+          <label class="remember-me">
+            <input type="checkbox" id="rememberMe">
+            <span>Remember me</span>
+          </label>
+
+          <a href="forgot-password.html">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn-login" id="loginBtn">
+          <i class="fas fa-right-to-bracket" aria-hidden="true"></i>
+          <span>Login to Portal</span>
+        </button>
+
+        <div
+          id="statusMessage"
+          class="status-message"
+          role="status"
+          aria-live="polite"
+        ></div>
       </form>
 
+      <div class="divider">New to LUMINA Face?</div>
+
       <div class="options">
-        <a href="#">Forgot Password?</a>
+        <span>Don't have an account?</span>
         <a href="signup.html">Create Account</a>
       </div>
 
-      <footer>EST. 2026 • LUMINA FACE</footer>
+      <footer>
+        EST. 2026 • <span class="footer-brand">LUMINA FACE</span>
+        <span class="footer-tagline">REAL FACES. BIGGER DREAMS.</span>
+      </footer>
+
     </div>
   </main>
 
+  <!-- Supabase authentication library -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
-    const SUPABASE_URL = 'https://binffdngnacbszygmbze.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_oW8_1I_YuaK_r8O_2eUbGg_iDo6Uewp';
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    // ===== SUPABASE CONFIGURATION =====
+    const SUPABASE_URL =
+      'https://binffdngnacbszygmbze.supabase.co';
 
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      const btn = document.getElementById('loginBtn');
-      
-      btn.innerHTML = 'Logging in...';
-      btn.disabled = true;
+    const SUPABASE_KEY =
+      'sb_publishable_oW8_1I_YuaK_r8O_2eUbGg_iDo6Uewp';
 
-      const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+    const supabaseClient = supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
 
-      if (error) {
-        alert("Login Error: " + error.message);
-        btn.innerHTML = 'Login to Portal';
-        btn.disabled = false;
-      } else {
-        window.location.href = "main.html";
+    // ===== PAGE ELEMENTS =====
+    const loginForm = document.getElementById('loginForm');
+    const loginBtn = document.getElementById('loginBtn');
+    const statusMessage = document.getElementById('statusMessage');
+    const passwordInput = document.getElementById('password');
+    const passwordToggle = document.getElementById('passwordToggle');
+
+    // ===== STATUS MESSAGES =====
+    function showMessage(message, type) {
+      statusMessage.textContent = message;
+      statusMessage.className = 'status-message ' + type;
+    }
+
+    function clearMessage() {
+      statusMessage.textContent = '';
+      statusMessage.className = 'status-message';
+    }
+
+    // ===== PASSWORD VISIBILITY =====
+    passwordToggle.addEventListener('click', function () {
+      const isPassword = passwordInput.type === 'password';
+
+      passwordInput.type = isPassword ? 'text' : 'password';
+      passwordToggle.innerHTML = isPassword
+        ? '<i class="fas fa-eye-slash" aria-hidden="true"></i>'
+        : '<i class="fas fa-eye" aria-hidden="true"></i>';
+
+      passwordToggle.setAttribute(
+        'aria-label',
+        isPassword ? 'Hide password' : 'Show password'
+      );
+
+      passwordToggle.setAttribute(
+        'aria-pressed',
+        String(isPassword)
+      );
+    });
+
+    // ===== LOGIN AUTHENTICATION =====
+    loginForm.addEventListener('submit', async function (event) {
+      event.preventDefault();
+      clearMessage();
+
+      const email = document.getElementById('email').value.trim();
+      const password = passwordInput.value;
+
+      loginBtn.disabled = true;
+      loginBtn.innerHTML =
+        '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i>' +
+        '<span>Logging in...</span>';
+
+      try {
+        const { data, error } =
+          await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+          });
+
+        if (error) {
+          showMessage(
+            'Login failed: ' + error.message,
+            'error'
+          );
+          return;
+        }
+
+        if (!data || !data.session) {
+          showMessage(
+            'Login could not be completed. Please try again.',
+            'error'
+          );
+          return;
+        }
+
+        showMessage(
+          'Login successful. Redirecting to your portal...',
+          'success'
+        );
+
+        // Preserve the existing destination.
+        window.location.href = 'main.html';
+
+      } catch (error) {
+        console.error('Login error:', error);
+
+        showMessage(
+          'A connection error occurred. Please check your internet connection and try again.',
+          'error'
+        );
+
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.innerHTML =
+          '<i class="fas fa-right-to-bracket" aria-hidden="true"></i>' +
+          '<span>Login to Portal</span>';
       }
     });
   </script>
+
 </body>
 </html>
