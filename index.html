@@ -806,7 +806,7 @@
             <div class="ticket-main-form">
                 <h3>INITIALIZE INDUCTION DOSSIER</h3>
                 <p>Opening your path submission feeds your digital metrics and snapshot values directly to our selection panel workspace.</p>
-                <a href="modeling web/signup.html" class="raw-btn raw-btn-filled" style="padding: 18px 45px; text-align: center; width: 100%;">Register</a>
+                <a href="modeling web/signup.html" id="registerButton" class="raw-btn raw-btn-filled" style="padding: 18px 45px; text-align: center; width: 100%;">Register</a>
             </div>
         </div>
     </section>
@@ -851,22 +851,20 @@
             }
         });
 
-        // Five-Day Countdown Engine
-        // Starts at five days whenever the page is loaded or refreshed.
-        const COUNTDOWN_DURATION = 5 * 24 * 60 * 60 * 1000;
-        const targetMoment = Date.now() + COUNTDOWN_DURATION;
+        // LUMINA FACE 2026 registration deadline.
+        // Registration closes on 24 October 2026 at 11:59 PM Nigerian time (WAT, UTC+1).
+        // Using a fixed deadline means refreshing the page will NOT restart the countdown.
+        const REGISTRATION_DEADLINE = new Date('2026-10-25T00:00:00+01:00').getTime();
         let countdownInterval;
 
         function runCountdown() {
-            const dynamicDelta = targetMoment - Date.now();
+            const dynamicDelta = REGISTRATION_DEADLINE - Date.now();
 
             if (dynamicDelta <= 0) {
-                document.getElementById('days').textContent = '00';
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
                 clearInterval(countdownInterval);
-                document.getElementById('countdown').innerHTML = `
+
+                const countdownSection = document.getElementById('countdown');
+                countdownSection.innerHTML = `
                     <h2 style="grid-column: 1 / -1; text-align: center; font-family: Syne, sans-serif; color: var(--accent-red);">
                         APPLICATIONS CLOSED
                     </h2>
@@ -885,8 +883,22 @@
             document.getElementById('seconds').textContent = String(s).padStart(2, '0');
         }
 
+        // Update immediately, then refresh the display every second.
         runCountdown();
         countdownInterval = setInterval(runCountdown, 1000);
+
+        // Prevent registration after the deadline.
+        // If registration is closed, tell the visitor and send them to login instead.
+        const registerButton = document.getElementById('registerButton');
+        const LOGIN_PAGE = 'modeling web/login.html';
+
+        registerButton.addEventListener('click', function (event) {
+            if (Date.now() >= REGISTRATION_DEADLINE) {
+                event.preventDefault();
+                alert('Registration for LUMINA FACE 2026 has closed. You can log in to your existing account.');
+                window.location.href = LOGIN_PAGE + '?registration=closed';
+            }
+        });
 
         // Control Interactive Popup Display States
         document.addEventListener('DOMContentLoaded', () => {
